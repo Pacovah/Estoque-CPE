@@ -1,6 +1,6 @@
 #include "input.h"
-void enter(int choice){         // Fun��o para perguntar se quer continuar depois de cada a��o.
-	cout << "Operação realizada! Deseja voltar ao menu inicial? (1 - Sim; 2 - Não)\n";
+void enter(int choice){         // Função para perguntar se quer continuar depois de cada ação.
+	cout << "OperaÃ§Ã£o realizada! Deseja voltar ao menu inicial? (1 - Sim; 2 - NÃ£o)\n";
 	cin >> choice;
         if (choice == 1){
             user_interactions();}
@@ -31,14 +31,15 @@ void user_interactions(){
     int choice;
     unsigned short int uid;
     string name;
+    int quantity;
     
 
-    cout << "Seja bem-vindo ao controle de inventário!\n O que você deseja fazer?\n 1 - Adicionar venda\n 2 - Inserir novo produto no estoque\n 3 - Alterar produto\n 4 - Remover produto\n 5 - Emitir relatório\n 6 - Sair\n";
+    cout << "Seja bem-vindo ao controle de inventÃ¡rio!\n O que vocÃª deseja fazer?\n 1 - Adicionar venda\n 2 - Inserir novo produto no estoque\n 3 - Alterar produto\n 4 - Remover produto\n 5 - Emitir relatÃ³rio\n 6 - Sair\n";
     
     cin >> entry;
 
     if (entry == 1){
-        cout << "Qual é o código do produto vendido?\n";
+        cout << "Qual Ã© o cÃ³digo do produto vendido?\n";
         cin >> entry;
         cout << "Qual foi a quantidade vendida?\n";
         cin >> entry;
@@ -48,19 +49,19 @@ void user_interactions(){
     }
 
     if (entry == 2){
-    	cout << "Qual é o nome do produto que se deseja adicionar?\n";
+    	cout << "Qual Ã© o nome do produto que se deseja adicionar?\n";
     	cin.ignore();
     	getline(cin,name);
     	product_stock_files::product_exists_in_stock(name);
 		if (product_stock_files::product_exists_in_stock(name)==false){
-    	cout << "Quantos produtos estão entrando no estoque?\n";
-    	cin>>entry;
-    	Product pr(name, entry);
+    	cout << "Quantos produtos estÃ£o entrando no estoque?\n";
+    	cin>>quantity;
+    	Product pr(name, quantity);
 		product_stock_files::create(pr); 
         enter(choice);}
         else if (product_stock_files::product_exists_in_stock(name)==true){
 			cout<<"O Produto ja existe no estoque.\n"<<"Entre novamente.\n";
-			cout << "Deseja voltar ao menu inicial? (1 - Sim; 2 - Não)\n";
+			cout << "Deseja voltar ao menu inicial? (1 - Sim; 2 - NÃ£o)\n";
 			cin >> choice;
 			if (choice == 1){
 			user_interactions();}
@@ -70,11 +71,13 @@ void user_interactions(){
         
     }
     if (entry == 3){
-        cout << "Qual o código do produto que se deseja alterar?\n";
+        cout << "Qual o cÃ³digo do produto que se deseja alterar?\n";
         cin >> uid;
-        cout << "O que você deseja alterar? (1 - Nome; 2 - Quantidade)\n";
+        cout << "O que vocÃª deseja alterar? (1 - Nome; 2 - Quantidade)\n";
         cin >> entry;
         if (entry == 1){
+	    auto pr = product_stock_files::get(uid);
+	    cout<< "O Nome atual do produto Ã© "<<pr.name<<endl; 
             cout << "Insira o novo nome:\n";
             string new_name;
             cin.ignore();
@@ -85,6 +88,8 @@ void user_interactions(){
             
         }
         else if (entry == 2){
+	    auto pr = product_stock_files::get(uid);
+	    cout<<"A quantidade atual do produto Ã© "<<pr.quantity<<endl; 
             cout << "Insira a nova quantidade:\n";
             int new_quantity;
             cin>>new_quantity;
@@ -96,6 +101,8 @@ void user_interactions(){
     if (entry == 4){
     	cout << "Qual o codigo do produto que se deseja remover?\n";
         cin >> uid;
+	auto pr = product_stock_files::get(uid);
+        cout<<"O produto "<<pr.name<<" foi removido do estoque"<<endl; 
         Product get(unsigned short int uid);
         product_stock_files::remove(uid);
         enter(choice);
@@ -103,7 +110,7 @@ void user_interactions(){
 
     if (entry == 5){
         cout << "Existem x tipos de produtos cadastrados na base, totalizando x produtos no estoque. A lista encontra-se a seguir:\n";
-        cout << "código ----------- nome --------- quantidade\n";
+        cout << "cÃ³digo ----------- nome --------- quantidade\n";
         
     }
     if (entry == 6){

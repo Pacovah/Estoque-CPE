@@ -1,2 +1,0 @@
-NAME:Cheetos
-QUANTITY:15

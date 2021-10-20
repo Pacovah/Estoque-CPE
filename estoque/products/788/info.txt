@@ -1,0 +1,2 @@
+NAME:Batata inglesa
+QUANTITY:16

@@ -1,3 +1,8 @@
-847:Cheetos
 108:Amendoim
 304:Abacate
+1:Arroz(5Kg)
+303:Cheetos
+293:Macarrão(500g)
+491:Feijão(1Kg)
+554:Abacaxi
+788:Batata inglesa

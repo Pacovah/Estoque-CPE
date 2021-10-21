@@ -165,4 +165,27 @@ namespace product_stock_files {
 
         return result;
     }
+    void uid_exist_stock(unsigned short int uid)
+	{
+	    ifstream in ("products/stock.txt");
+	    int readnumber;
+	    vector<int>Nvector;
+ 	    while(in>>readnumber){
+	    Nvector.push_back(readnumber);}
+	    while(true)
+	  {
+	            int c = 0;
+	            for(int i = 0;i<Nvector.size();i++)
+		{
+		            if(Nvector[i]==uid)
+			{
+		            c=c+1;
+		    }
+
+        }
+	    if (c==0)
+	    cout<<"ERRO! O cÃ³digo inserido nÃ£o esta registrado"<<endl;
+	    break;
+     }
+    }
 }

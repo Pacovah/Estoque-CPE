@@ -73,6 +73,7 @@ void user_interactions(){
     if (entry == 3){
         cout << "Qual o cÃ³digo do produto que se deseja alterar?\n";
         cin >> uid;
+	product_stock_files::uid_exist_stock(uid);
         cout << "O que vocÃª deseja alterar? (1 - Nome; 2 - Quantidade)\n";
         cin >> entry;
         if (entry == 1){
@@ -101,6 +102,7 @@ void user_interactions(){
     if (entry == 4){
     	cout << "Qual o codigo do produto que se deseja remover?\n";
         cin >> uid;
+	product_stock_files::uid_exist_stock(uid);
 	auto pr = product_stock_files::get(uid);
         cout<<"O produto "<<pr.name<<" foi removido do estoque"<<endl; 
         Product get(unsigned short int uid);

@@ -33,6 +33,7 @@ namespace product_stock_files {
     void update_stock_product_name(unsigned short int uid, string old_name, string new_name);
     void remove(unsigned short int uid);
     set<unsigned short int> getAllUIDs();
+    void uid_exist_stock(unsigned short int);
 }
 
 #endif
